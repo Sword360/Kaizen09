@@ -1,1 +1,7 @@
-*main.tf
+#ignore terraform state file 
+
+*.tfstate
+*.tfstate.*
+terraform.tfstate
+terraform.tfstate.*
+
