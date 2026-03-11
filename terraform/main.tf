@@ -9,3 +9,10 @@ resource "aws_security_group" "prod" {
     name = "next-firewall"
 
 }
+resource "aws_security_group" "prdev" {
+    name = "ndos-firewall"
+}
+
+resource "aws_iam_user" "dev"{
+    name="evan"
+}
