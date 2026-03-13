@@ -1,0 +1,4 @@
+while read lines; 
+do 
+echo $lines | cut -b 2-7;
+done
