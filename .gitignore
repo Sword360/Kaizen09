@@ -53,3 +53,9 @@ terragrunt-debug.tfvars.json
 
 # Windows
 Thumbs.db
+
+# inventories/.gitignore
+*.ini
+
+# Inventory 
+*.pem
