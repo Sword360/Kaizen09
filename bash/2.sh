@@ -35,3 +35,6 @@ read -p "enter dir name : " dir
 check_folder "$dir"
 read -p "enter the number : " num
 check_num "$num"
+
+
+#testiing
