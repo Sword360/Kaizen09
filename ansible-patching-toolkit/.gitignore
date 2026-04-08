@@ -9,3 +9,7 @@ __pycache__/
 
 # Inventory 
 inventories/production/*.ini
+
+*.ini
+.hosts.ini
+*.hosts.ini
