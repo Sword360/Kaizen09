@@ -8,4 +8,4 @@ __pycache__/
 *.log
 
 # Inventory 
-inventories/*.ini
+inventories/production/*.ini
