@@ -1,0 +1,57 @@
+- name: Uninstall Go from EC2
+  hosts: ec2
+  become: yes
+  gather_facts: yes
+
+  vars:
+    go_tarball_path: /usr/local/go
+    go_path_line: "export PATH=$PATH:/usr/local/go/bin"
+
+  tasks:
+    # --- Remove Go installed via package manager ---
+    - name: Remove Go on Ubuntu/Debian
+      apt:
+        name: golang-go
+        state: absent
+        purge: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Remove Go on RHEL/Amazon Linux
+      yum:
+        name: golang
+        state: absent
+      when: ansible_os_family == "RedHat"
+
+    # --- Remove Go tarball installation ---
+    - name: Remove Go tarball directory
+      file:
+        path: "{{ go_tarball_path }}"
+        state: absent
+
+    # --- Remove PATH modification from /etc/profile ---
+    - name: Remove Go PATH from /etc/profile
+      lineinfile:
+        path: /etc/profile
+        regexp: "{{ go_path_line | regex_escape }}"
+        state: absent
+
+    # --- Refresh shell environment (ignore errors if interactive shell not available) ---
+    - name: Refresh shell environment
+      shell: source /etc/profile
+      ignore_errors: yes
+
+    # --- Verify removal safely ---
+    - name: Check Go version (should fail if uninstalled)
+      command: go version
+      register: go_check
+      ignore_errors: yes
+
+    - name: Report Go removal
+      debug:
+        msg: "Go uninstalled successfully"
+      when: go_check.rc != 0
+
+    - name: Warn if Go still exists
+      debug:
+        msg: "Go still exists on system at {{ go_check.stdout }}"
+      when: go_check.rc == 0

@@ -1,0 +1,11 @@
+# Sensitive keys
+*.pem
+
+# Retry logs and cache
+*.retry
+__pycache__/
+.vscode/
+*.log
+
+# Inventory 
+inventories/*.ini

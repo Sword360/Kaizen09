@@ -1,0 +1,26 @@
+- name: Fix broken apt state
+  apt:
+    update_cache: yes
+    upgrade: no
+    force_apt_get: yes
+
+- name: Clean apt cache
+  command: apt-get clean
+
+- name: Remove old package lists
+  command: rm -rf /var/lib/apt/lists/*
+  ignore_errors: yes
+
+- name: Rebuild apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Upgrade packages safely
+  apt:
+    upgrade: dist
+    force_apt_get: yes
+  register: apt_result
+  retries: 3
+  delay: 10
+  until: apt_result is succeeded
