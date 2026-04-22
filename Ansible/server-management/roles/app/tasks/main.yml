@@ -1,0 +1,5 @@
+---
+- name: Install application dependencies
+  apt:
+    name: "{{ packages }}"
+    state: present

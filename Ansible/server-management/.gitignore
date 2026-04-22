@@ -1,0 +1,62 @@
+# -------------------------------------------------------------------------
+# Terraform
+# -------------------------------------------------------------------------
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform/
+.terraform/*
+crash.log
+crash.*
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Sensitive files
+secret.tfvars
+private.tfvars
+terraform.tfvars
+
+# -------------------------------------------------------------------------
+# Ansible
+# -------------------------------------------------------------------------
+# SSH keys
+*.pem
+*.key
+*.pub
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# Ansible retry files
+*.retry
+
+# Vault passwords
+.vault_pass
+
+# Python virtual environment
+venv/
+.env/
+__pycache__/
+*.pyc
+
+# Inventory secrets (if any)
+inventory/host_vars/*_private.yml
+inventory/group_vars/*_private.yml
+
+# -------------------------------------------------------------------------
+# OS / Editor / Temporary files
+# -------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.log
+tmp/
+.cache/
+
+# VS Code
+.vscode/
